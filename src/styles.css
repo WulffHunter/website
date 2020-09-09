@@ -1,0 +1,456 @@
+body {
+	margin: 0;
+	margin-bottom: 1em;
+	font-family: 'Raleway', sans-serif;
+	background-color: rgba(210, 210, 210);
+}
+
+a {
+	cursor: pointer;
+}
+
+#game {
+	/* Prevent zoom on double-tap */
+	touch-action: manipulation;
+	z-index: -1;
+	background-color: white;
+	cursor: pointer;
+	/* Prevent highlighting on click due to the cursor being a pointer */
+	-webkit-tap-highlight-color: transparent;
+	-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+	user-select: none;
+}
+
+.rounded {
+    border-radius: 0 0 1em 1em;
+    padding: 0 1em 1em;
+    position: fixed;
+    background-color: grey;
+    width: 60%;
+	left: 50%;
+    transform: translateX(-50%);
+	user-select: none;
+	z-index: 1;
+}
+
+@media screen and (max-width: 600px) {
+    .rounded {
+        width: 80%;
+    }
+}
+
+.rounded:before {
+    top: 0;
+    right: 100%;
+    content: "";
+    position: absolute;
+    width: 1.2em;
+    height: 1em;
+    border-radius: 0 5em 0 0;
+    box-shadow: 10px -5px 0 5px grey;
+    background-color: transparent;
+}
+
+.rounded:after {
+    top: 0;
+    left: 100%;
+    content: "";
+    position: absolute;
+    width: 1.2em;
+    height: 1em;
+    border-radius: 5em 0 0 0;
+    box-shadow: -10px -5px 0 5px grey;
+    background-color: transparent;
+}
+
+.inner-content {
+    position: relative;
+    top: 0.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo:after {
+    border-bottom: 1px solid black;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 1px;
+    position: relative;
+    transition: width 0.5s ease 0s;
+    width: 0;
+}
+
+.logo:hover:after { 
+    width: 100%;
+}
+
+.logo {
+    flex-grow: 1;
+    font-family: 'Raleway', sans-serif;
+    font-size: 18px;
+    color: inherit;
+    text-decoration: none;
+    padding: 0.25em 0.5em;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.logofade {
+	-webkit-animation: logofadein 2s forwards; /* Safari, Chrome and Opera > 12.1 */
+	   -moz-animation: logofadein 2s forwards; /* Firefox < 16 */
+		-ms-animation: logofadein 2s forwards; /* Internet Explorer */
+		 -o-animation: logofadein 2s forwards; /* Opera < 12.1 */
+			animation: logofadein 2s forwards;
+}
+
+.tab-group {
+    flex-grow: 1;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tab {
+    font-family: 'Raleway', sans-serif;
+    font-size: 12px;
+    color: inherit;
+    text-decoration: none;
+    padding: 0.5em;
+	text-align: center;
+	transition: 0.3s;
+}
+
+.tab:hover {
+    text-shadow: 0 0 10px black;
+}
+
+.tabfade {
+    opacity: 0;
+
+	-webkit-animation: tabfadein 1.75s forwards 1.5s; /* Safari, Chrome and Opera > 12.1 */
+	   -moz-animation: tabfadein 1.75s forwards 1.5s; /* Firefox < 16 */
+		-ms-animation: tabfadein 1.75s forwards 1.5s; /* Internet Explorer */
+		 -o-animation: tabfadein 1.75s forwards 1.5s; /* Opera < 12.1 */
+			animation: tabfadein 1.75s forwards 1.5s;
+}
+
+#menu {
+	height: 100%;
+	width: 0;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	overflow-x: hidden;
+	transition: 0.5s;
+	background-color: grey;
+	justify-content: center;
+	align-content: center;
+	white-space: nowrap;
+	box-shadow: 5px 0px 5px rgba(64, 64, 64);
+}
+
+.menu-content {
+	margin: 3em;
+	overflow-x: hidden;
+}
+
+.menu-content > a {
+	display: block;
+	width: auto;
+	overflow-x: hidden;
+}
+
+.only-mobile {
+	display: none;
+}
+
+@media screen and (max-width: 600px) {
+	.only-mobile {
+		display: inline;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.non-mobile {
+		display: none;
+	}
+}
+
+.menu-button {
+	font-size: 16px;
+}
+
+#menu.show-menu {
+	width: 100%;
+}
+
+.close-btn {
+	position: absolute;
+	top: 1em;
+	right: 1em;
+	font-size: 24px;
+}
+
+.page-content {
+	padding: 3em;
+	font-family: 'Raleway', sans-serif;
+}
+
+.list {
+	columns: 2;
+}
+
+.scroll-btn {
+	height: 40px;
+	width: 40px;
+	position: relative;
+	display: block;
+	margin: 10px auto;
+}
+
+.scroll-btn span {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	width: 40px;
+	height: 40px;
+	margin-left: -20px;
+	border: 1px solid black;
+	border-radius: 100%;
+	box-sizing: border-box;
+	transition: 0.5s;
+}
+
+.scroll-btn span:hover {
+	box-shadow: 0 0 10px black;
+}
+
+.scroll-btn > .down-arrow::after {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	content: '';
+	width: 16px;
+	height: 16px;
+	margin: -12px 0 0 -8px;
+	border-left: 1px solid black;
+	border-bottom: 1px solid black;
+	-webkit-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+	box-sizing: border-box;
+}
+
+.scroll-btn > .up-arrow::after {
+	position: absolute;
+	top: 70%;
+	left: 50%;
+	content: '';
+	width: 16px;
+	height: 16px;
+	margin: -12px 0 0 -8px;
+	border-right: 1px solid black;
+	border-top: 1px solid black;
+	-webkit-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+	box-sizing: border-box;
+}
+
+.section {
+	display: flex;
+	margin: 1em;
+	padding: 2em;
+	background-color: white;
+	border-radius: 1em;
+}
+
+.section-title {
+	padding: 1em;
+	flex-grow: 1;
+	/* white-space: nowrap; */
+}
+.section-title.right {
+	border-right: 1px solid black;
+}
+.section-title.left {
+	border-left: 1px solid black;
+}
+
+.section-info {
+	padding: 1em;
+}
+
+/*
+    LOGO FADING
+*/
+
+@keyframes logofadein {
+	from {
+		opacity: 0;
+		letter-spacing: 3px;
+	}
+	to {
+		opacity: 1;
+		letter-spacing: 8px;
+	}
+}
+
+/* Firefox < 16 */
+@-moz-keyframes logofadein {
+	from {
+		opacity: 0;
+		letter-spacing: 3px;
+	}
+	to {
+		opacity: 1;
+		letter-spacing: 8px;
+	}
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes logofadein {
+	from {
+		opacity: 0;
+		letter-spacing: 3px;
+	}
+	to {
+		opacity: 1;
+		letter-spacing: 8px;
+	}
+}
+
+/* Internet Explorer */
+@-ms-keyframes logofadein {
+	from {
+		opacity: 0;
+		letter-spacing: 3px;
+	}
+	to {
+		opacity: 1;
+		letter-spacing: 8px;
+	}
+}
+
+/* Opera < 12.1 */
+@-o-keyframes logofadein {
+	from {
+		opacity: 0;
+		letter-spacing: 3px;
+	}
+	to {
+		opacity: 1;
+		letter-spacing: 8px;
+	}
+}
+
+/*
+    TAB FADING
+*/
+
+@keyframes tabfadein {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+/* Firefox < 16 */
+@-moz-keyframes tabfadein {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes tabfadein {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+/* Internet Explorer */
+@-ms-keyframes tabfadein {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+/* Opera < 12.1 */
+@-o-keyframes tabfadein {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+/*
+    TAB BUTTON FADING
+*/
+
+@keyframes tabbuttonfade {
+	from {
+        text-shadow: none;
+	}
+	to {
+		text-shadow: 2px 2px black;
+	}
+}
+
+/* Firefox < 16 */
+@-moz-keyframes tabbuttonfade {
+	from {
+        text-shadow: none;
+	}
+	to {
+		text-shadow: 2px 2px black;
+	}
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes tabbuttonfade {
+	from {
+        text-shadow: none;
+	}
+	to {
+		text-shadow: 2px 2px black;
+	}
+}
+
+/* Internet Explorer */
+@-ms-keyframes tabbuttonfade {
+	from {
+        text-shadow: none;
+	}
+	to {
+		text-shadow: 2px 2px black;
+	}
+}
+
+/* Opera < 12.1 */
+@-o-keyframes tabbuttonfade {
+	from {
+        text-shadow: none;
+	}
+	to {
+		text-shadow: 2px 2px black;
+	}
+}

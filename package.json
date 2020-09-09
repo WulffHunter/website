@@ -1,0 +1,27 @@
+{
+  "name": "game",
+  "version": "1.0.0",
+  "description": "Game for Jared Rand website",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx webpack --mode=development --watch",
+    "build": "npx webpack --mode=production",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "css-loader": "^4.2.2",
+    "extract-loader": "^5.1.0",
+    "html-loader": "^1.3.0",
+    "html-webpack-plugin": "^4.4.1",
+    "style-loader": "^1.2.1",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
+  },
+  "devDependencies": {
+    "file-loader": "^6.0.0",
+    "html-webpack-tags-plugin": "^2.0.17",
+    "mini-css-extract-plugin": "^0.11.0"
+  }
+}
