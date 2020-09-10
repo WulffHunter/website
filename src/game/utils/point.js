@@ -13,7 +13,7 @@ export default class Point {
     }
 
     isZero() {
-        return this.x == this.y == 0
+        return this.equals(0, 0)
     }
     
     set(x, y) {
@@ -33,5 +33,15 @@ export default class Point {
 
     toString() {
         return `[${this.x}, ${this.y}]`
+    }
+
+    null() {
+        this.x = this.y = null
+        
+        return this
+    }
+
+    isNull() {
+        return this.x == null && this.y == null
     }
 }

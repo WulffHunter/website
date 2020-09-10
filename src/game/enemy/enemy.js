@@ -39,9 +39,6 @@ export default class Enemy {
             hitboxHeight,
         )
 
-        // The message for this enemy to post
-        this.message = undefined
-
         this.clickBox = new HitBox(
             position.x - (hitboxWidth / 2),
             position.y - (hitboxHeight / 2),
@@ -75,13 +72,6 @@ export default class Enemy {
             return
         }
 
-        if (!!this.message) {
-            world.postMessage(this.message.subject, this.message.data)
-
-            // Since the message has been posted, unset it
-            this.message = undefined
-        }
-
         // Certain states revert to other states once their animation
         // is complete
         if (this.spriteSet[this.state].animationComplete()) {
@@ -105,12 +95,12 @@ export default class Enemy {
             }
         }
 
-        // If the player is within attacking distance
+        // If the player is within attacking distance...
         if (this.position.distance(this.playerPosition) <= this.attackRadius) {
-            // Face the player
+            // ...Face the player...
             this.facingLeft = this.playerPosition.x < this.position.x
 
-            // Attack if in the hovering position
+            // ...Attack if in the hovering position
             if (this.state == enemyState.HOVER) {
                 this.state = enemyState.ATTACK
             }
@@ -153,16 +143,14 @@ export default class Enemy {
         }
     }
 
-    input(_pageInfo, eventInfo) {
+    input(_pageInfo, eventInfo, world) {
         // If the monster was clicked...
         if (this.clickBox.contains(eventInfo)) {
+
             // ...Set up a message to move the player to it
-            this.message = {
-                subject: 'monster_clicked',
-                data: {
-                    monster_position: this.position,
-                },
-            }
+            world.postMessage('monster_clicked', {
+                monster_position: this.position,
+            })
         }
     }
     

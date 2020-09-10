@@ -13,6 +13,7 @@ export default class Game {
 		if (!!eventInfo) {
 			this.world.input(pageInfo, eventInfo)
 		}
+		this.world.distributeMessages()
 		this.world.step(pageInfo)
 		this.world.distributeMessages()
 		this.world.render(context)

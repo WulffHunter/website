@@ -5,7 +5,6 @@ import {
     getLengthDirX,
     getLengthDirY,
 } from '../utils/utils'
-import LocationMarker from './location_marker'
 
 export default class Player {
     
@@ -14,11 +13,12 @@ export default class Player {
         this.facingLeft = true
         this.baseSprite = baseSprite
 
+        // Create a new click and nullify it
+        this.clickTarget = new Point(0, 0).null()
+
         this.position = new Point(0, 0)
         this.target = new Point(0, 0)
         this.velocity = 0
-
-        this.targetChanged = false
 
         this.maxSpeed = 4
         // this.maxSpeed = 2.5
@@ -36,12 +36,27 @@ export default class Player {
         // If the target changed, post a message to the world so that the
         // location marker can update its position
         if (this.targetChanged) {
-            world.postMessage('player_target_change', {
-                targetPosition: this.target,
-            })
+            
 
-            // Forget that the target was recently changed
-            this.targetChanged = false
+            if (this.position.distance(this.targetChanged) < this.attackRadius) {
+                
+            }
+        }
+
+        if (!this.clickTarget.isNull()) {
+            // If the last click was in the attack radius
+            if (this.clickTarget.distance(this.position) < this.attackRadius) {
+                this.sword.attack()
+            } else {
+                this.target.set(this.clickTarget.x, this.clickTarget.y)
+
+                world.postMessage('player_target_change', {
+                    targetPosition: this.target,
+                })
+            }
+
+            // Nullify the click target since we've handled the click
+            this.clickTarget.null()
         }
 
         if (this.position.distance(this.target) > this.maxSpeed) {
@@ -75,23 +90,8 @@ export default class Player {
         this.sword.step(world, this.position, this.facingLeft)
     }
 
-    input(_pageInfo, eventInfo) {
-        this.setTarget(eventInfo)
-        // If the clicked area is outside of the current range...
-        if (this.position.distance(eventInfo) > this.attackRadius) {
-            
-            // ...Set the target point
-            this.setTarget(eventInfo)
-        } else {
-            this.sword.attack()
-        }
-    }
-
-    setTarget(point) {
-        // Set the target point
-        this.target = point
-        // Remember that the target was recently changed
-        this.targetChanged = true
+    input(_pageInfo, eventInfo, _world) {
+        this.clickTarget = eventInfo
     }
 
     depth() {
@@ -102,10 +102,12 @@ export default class Player {
         if (message.subject == 'monster_clicked') {
             const monsterPos = message.data.monster_position
 
-            if (this.position.distance(monsterPos) > this.attackRadius) {
-                // Add a little bit of distance between the player and the monster
-                this.setTarget(new Point(monsterPos.x, monsterPos.y - 5))
-            }
+            // Add a little bit of distance between the player and the monster
+            // depending on the way the player is facing
+            this.clickTarget.set(
+                monsterPos.x + (10 * (this.facingLeft ? 1 : -1)),
+                monsterPos.y
+            )
         }
     }
     

@@ -30,7 +30,7 @@ export default class World {
 
     input(pageInfo, eventInfo) {
         this.entities.forEach((e) => {
-            !!e && !!e.input && e.input(pageInfo, eventInfo)
+            !!e && !!e.input && e.input(pageInfo, eventInfo, this)
         })
     }
 
