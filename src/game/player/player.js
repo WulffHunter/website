@@ -105,8 +105,8 @@ export default class Player {
             // Add a little bit of distance between the player and the monster
             // depending on the way the player is facing
             this.clickTarget.set(
-                monsterPos.x + (10 * (this.facingLeft ? 1 : -1)),
-                monsterPos.y
+                monsterPos.x + (10 * (this.position.x > monsterPos.x ? 1 : -1)),
+                monsterPos.y + (5 * (this.position.y > monsterPos.y ? 1 : -1))
             )
         }
     }
