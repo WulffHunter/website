@@ -1,28 +1,59 @@
-import { getViewDimensions } from '../utils/utils'
+import QueueableText from '../engine/queueable_text'
+import Point from '../utils/point'
+
+const initialText = 'click anywhere.'
+const attackText = 'click the monster to attack it.'
 
 export default class CentralText {
     constructor () {
-        const dimensions = getViewDimensions()
+        // This empty point will be overwritten
+        this.drawLocation = new Point(0, 0)
 
-        this.screenWidth = dimensions.width
-        this.screenHeight = dimensions.height
+        this.screenWasClicked = false
 
-        this.text = 'click anywhere.'
+        this.queueableText = new QueueableText(initialText)
+
+        this.killCount = 0
     }
 
     step(pageInfo) {
-        this.screenWidth = pageInfo.width
-        this.screenHeight = pageInfo.height
+        this.drawLocation.set(
+            pageInfo.width / 2,
+            pageInfo.height / 2,
+        )
+
+        this.queueableText.step()
     }
     
     depth() {
         return -9999
     }
 
+    input() {
+        if (!this.screenWasClicked) {
+            this.screenWasClicked = true
+
+            this.queueableText.queueTransitionedTextChange(
+                attackText, 130
+            )
+        }
+    }
+
+    onMessage(message) {
+        if (message.subject == 'monster_killed') {
+            this.queueableText.queueTransitionedTextChange(
+                `monsters defeated: ${++this.killCount}`, 120
+            )
+        }
+    }
+
     render(context) {
-        context.fillStyle = 'rgba(0, 0, 0, 0.25)'
-        context.font = '30px Arial'
-        context.textAlign = 'center'
-        context.fillText(this.text, this.screenWidth / 2, this.screenHeight / 2)
+        this.queueableText.render(
+            context,
+            0.25,
+            '24px Arial',
+            'center',
+            this.drawLocation,
+        )
     }
 }

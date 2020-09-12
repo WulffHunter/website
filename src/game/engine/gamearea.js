@@ -111,11 +111,11 @@ export default class GameArea {
 
 	pushEvent(event) {
 		if (!!event) {
-			this.eventQueue.unshift(event)
+			this.eventQueue.push(event)
 		}
 	}
 
 	getEvent() {
-		return this.eventQueue.pop()
+		return this.eventQueue.shift()
 	}
 }

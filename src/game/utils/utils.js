@@ -20,3 +20,12 @@ export const getLengthDirY = (angle, distance) =>
 // Gets a random value in the given range
 export const randomRange = (min, max) =>
     Math.random() * (max - min) + min
+
+// Returns the smoothstepped percent
+// based on percentage down the curve
+export const smoothStep = (percent) => {
+    if (percent < 0) return 0
+    if (percent > 1) return 1
+
+    return percent * percent * (3 - 2 * percent)
+}

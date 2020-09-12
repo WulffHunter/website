@@ -11,7 +11,7 @@ const enemyState = {
 }
 
 export default class Enemy {
-    constructor (spriteSet, baseSprite, position) {
+    constructor (spriteSet, baseSprite, position, health) {
         this.spriteSet = spriteSet
         this.baseSprite = baseSprite
 
@@ -25,7 +25,7 @@ export default class Enemy {
 
         this.state = enemyState.RISE
 
-        this.health = 5
+        this.health = health
         this.timeSinceKilled = 0
 
         this.maxTimeDead = 100

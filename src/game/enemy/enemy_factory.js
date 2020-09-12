@@ -20,7 +20,7 @@ export default class EnemyFactory {
 
         this.timeBetweenEnemies = timeBetweenEnemies
         // Wait 100 steps before generating the first enemy
-        this.currentTime = timeBetweenEnemies - 100
+        this.currentTime = timeBetweenEnemies - 140
 
         this.enemiesCreated = 0
 
@@ -70,7 +70,8 @@ export default class EnemyFactory {
                             this.padding.height,
                             pageInfo.height - this.padding.height,
                         )),
-                    )  
+                    ),
+                    this.enemiesCreated == 0 ? 2 : randomRange(2, 4)
                 ))
 
                 this.enemiesCreated++
