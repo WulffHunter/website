@@ -1,16 +1,50 @@
+const TABS = {
+    ['Programming']: './programming.html',
+    ['Artistic Endevours']: './artistic-endevours.html',
+    ['Collaboration']: './collaboration.html',
+    ['Links']: './links.html',
+    ['Contact Me']: './contact-me.html'
+}
+
+// const github = 'https://github.com/wulffhunter'
+// const linkedin = 'https://www.linkedin.com/in/jared-rand-522907134/'
+
+const tabToHTML = (tabName, link, isMenuTab) =>
+    `<a
+        href="${link}"
+        class="tab ${ isMenuTab ? '' : 'tabfade' }"
+    >
+        ${tabName}
+    </a>`
+
+const tabsToString = (isMenuTabs) =>
+    (acc, currKey) => `
+        ${acc}
+        ${tabToHTML(currKey, TABS[currKey], isMenuTabs)}
+    `
+
 const menuHtml = `
     <div id="header" class="rounded">
         <div class="inner-content">
             <div class="tab-group non-mobile">
-                <a href="./about-me.html" class="tab tabfade">About Me</a>
-                <a href="./about-site.html" class="tab tabfade">About This Site</a>
+                ${
+                    Object.keys(TABS)
+                        .slice(0, Math.floor(
+                            Object.keys(TABS).length / 2
+                        ))
+                        .reduce(tabsToString(false), '')
+                }
             </div>
             <div class="tab-group only-mobile"></div>
             <a href="./index.html" class="logo logofade">Jared Rand</a>
             <div class="tab-group non-mobile">
-                <a href="https://github.com/wulffhunter" class="tab tabfade">GitHub</a>
-                <a href="https://www.linkedin.com/in/jared-rand-522907134/" class="tab tabfade">LinkedIn</a>
-                <a href="./contact-me.html" class="tab tabfade">Contact Me</a>
+                ${
+                    Object.keys(TABS)
+                        .slice(Math.floor(
+                            Object.keys(TABS).length / 2
+                        ))
+                        .reduce(tabsToString(false), '')
+                }
             </div>
             <div class="tab-group only-mobile">
                 <a class="tab tabfade menu-button" onclick="toggleMenu()">&#9776;</a>
@@ -21,11 +55,9 @@ const menuHtml = `
         <div class="menu-content">
             <a class="tab close-btn" onclick="toggleMenu()">&times;</a>
             <a href="./index.html" class="tab">Home</a>
-            <a href="./about-me.html" class="tab">About Me</a>
-            <a href="./about-site.html" class="tab">About This Site</a>
-            <a href="https://github.com/wulffhunter" class="tab">GitHub</a>
-            <a href="https://www.linkedin.com/in/jared-rand-522907134/" class="tab">LinkedIn</a>
-            <a href="./contact-me.html" class="tab">Contact Me</a>
+            ${
+                Object.keys(TABS).reduce(tabsToString(true), '')
+            }
         </div>
     </div>
 `
