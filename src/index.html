@@ -3,73 +3,73 @@
 <head>
     <title>Jared Rand's Website</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="./main.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
 </head>
 <body>
     <canvas id="game"></canvas>
-    <div>
-        <div class="learn-more">
-            Click to learn more:
+    <a
+        class="scroll-btn"
+        onclick="smoothScrollToElement('about-me', 1000, 40)"
+    >
+        <span class="down-arrow"></span>
+    </a>
+    <div class="section-container">
+        <div id="about-me" class="section">
+            <div class="section-title right">
+                <h1>About me</h1>
+                <img src="./images/Taco.jpg">
+            </div>
+            <div class="section-info">
+                <p>
+                    Hi there! I'm Jared Rand. Welcome to my website.
+                </p>
+                <p>
+                    I'm a Toronto-based developer and I love to teach and learn.
+                </p>
+                <p>
+                    I've worked as a Teaching Assistant (twice), a Research Assistant (once), a Full-Stack Developer, 
+                    a Front-End Developer (with a sprinkling of backend work), and even as a courier!
+                </p>
+                <p>
+                    I'm also very active creatively. I love to write, draw, play ukulele, and run Dungeons & Dragons 
+                    games (I even started the Dungeons & Dragons club at Ryerson University!) I've written a novel, 
+                    dabbled in stand-up (I've got a video of it somewhere on YouTube), and I'm obsessed with 
+                    finding good music.
+                </p>
+                <p>
+                    <a href="contact-me.html">Reach out to me</a> if you want to know more, or even just to chat.
+                </p>
+                <p>
+                    Have fun checking out my website!
+                </p>
+            </div>
         </div>
-        <a
-            class="scroll-btn"
-            onclick="smoothScrollToElement('about-me', 1000, 40)"
-        >
-            <span class="down-arrow"></span>
-        </a>
-    </div>
-    <div id="about-me" class="section">
-        <div class="section-title right">
-            <h1>About me</h1>
-        </div>
-        <div class="section-info">
-            <p>
-                Hi there! I'm Jared Rand. Welcome to my website.
-            </p>
-            <p>
-                I'm a Toronto-based developer and I love to teach and learn.
-            </p>
-            <p>
-                I've worked as a Teaching Assistant (twice), a Research Assistant (once), a Full-Stack Developer, 
-                a Front-End Developer (with a sprinkling of backend work), and even as a courier!
-            </p>
-            <p>
-                I'm also very active creatively. I love to write, draw, play ukulele, and run Dungeons & Dragons 
-                games (I even started the Dungeons & Dragons club at Ryerson University!) I've written a novel, 
-                dabbled in stand-up (I've got a video of it somewhere on YouTube), and I'm obsessed with 
-                finding good music.
-            </p>
-            <p>
-                <a href="contact-me.html">Reach out to me</a> if you want to know more, or even just to chat.
-            </p>
-            <p>
-                Have fun checking out my website!
-            </p>
-        </div>
-    </div>
-    <div id="about-site" class="section">
-        <div class="section-info">
-            <p>
-                Everything on this website was drawn, built, coded, and/or designed by me, including the 
-                game above and the engine that runs it.
-            </p>
-            <p>
-                My goal with this website was to introduce people to who I am and showcase some of my skills. 
-                I hope this website, and the game above, accomplish that, or at least let you have a bit of 
-                fun while looking me up.
-            </p>
-            <p>
-                <a>All of the website code</a> is available on my 
-                <a href="https://github.com/wulffhunter">GitHub profile</a>, as well as 
-                <a>a generalized version of the game engine</a>. I hope these can be useful in the future.
-            </p>
-            <p>
-                To check out more of my Computer Science/Software Development work, click <a>here</a>.
-            </p>
-        </div>
-        <div class="section-title left">
-            <h1>About this site</h1>
+        <div id="about-site" class="section">
+            <div class="section-info">
+                <p>
+                    Everything on this website was drawn, built, coded, and/or designed by me, including the 
+                    game above and the engine that runs it.
+                </p>
+                <p>
+                    My goal with this website was to introduce people to who I am and showcase some of my skills. 
+                    I hope this website, and the game above, accomplish that, or at least let you have a bit of 
+                    fun while looking me up.
+                </p>
+                <p>
+                    <a href="https://github.com/WulffHunter/website">All of the website code</a> 
+                    is available on my 
+                    <a href="https://github.com/wulffhunter">GitHub profile</a>, where I will also soon post 
+                    <a>a generalized version of the game engine</a>. I hope these can be useful in the future.
+                </p>
+                <p>
+                    To check out more of my Computer Science/Software Development work, click 
+                    <a href="./programming.html">here</a>.
+                </p>
+            </div>
+            <div class="section-title left">
+                <h1>About this site</h1>
+                <img src="./images/WulffWalk.gif" class="pixelated">
+            </div>
         </div>
     </div>
     <a

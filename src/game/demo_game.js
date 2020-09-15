@@ -52,11 +52,11 @@ export const demoGameGenerator = (world) => {
     const topText = new TopText()
     world.push(topText)
 
-    // Any enemy factory for Fiends. Generates new Fiends every 500 steps.
+    // Any enemy factory for Fiends. Generates new Fiends every 325 steps.
     const enemyFactory = new EnemyFactory(
         FiendSpritesGenerator,
         MonsterBaseSprite,
-        500,
+        325,
         64,
         64,
     )

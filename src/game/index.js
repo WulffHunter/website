@@ -6,7 +6,7 @@ export const createGame = () => {
     const game = new Game(demoGameGenerator)
     const gameArea = new GameArea('game', (viewWidth, viewHeight) => ({
         width: viewWidth,
-        height: viewHeight - 110,
+        height: viewHeight - 70,
     }))
 
     gameArea.start(game, undefined)
