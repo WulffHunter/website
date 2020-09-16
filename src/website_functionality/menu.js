@@ -1,6 +1,6 @@
 const TABS = {
     ['Programming']: './programming.html',
-    ['Artistic Endevours']: './artistic-endevours.html',
+    ['Creative Endeavours']: './creative-endeavours.html',
     ['Collaboration']: './collaboration.html',
     ['Links']: './links.html',
     ['Contact Me']: './contact-me.html'

@@ -4,7 +4,7 @@
   "description": "Game for Jared Rand website",
   "main": "index.js",
   "scripts": {
-    "start": "npx webpack --mode=development --watch",
+    "start": "rm -rf dist && npx webpack --mode=development --watch",
     "build": "npx webpack --mode=production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

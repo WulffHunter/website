@@ -1,30 +1,44 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Contact Me</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
-</head>
-<body>
-    <div class="page-content">
-        <h1>Contact Me</h1>
-        <p>
-            The best way to get in touch with me is to email me at <code>jared &lt;at&gt; jaredrand.com</code> 
-            (I've written it like this to prevent web crawlers from inundating my inbox with spam).
-        </p>
-        <p>
-            You can also shoot me a message on 
-            <a href="https://www.linkedin.com/in/jared-rand-522907134/">
-                LinkedIn
-            </a>.
-        </p>
-        <p>
-            It doesn't have to be about anything in specific. Send me messages, questions, "happy new years", 
-            or even music recommendations. It doesn't matter: I'm happy to help!
-        </p>
-        <p>
-            Talk to you soon!
-        </p>
+  <head>
+    <title>Contact Me | Jared Rand</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="title">
+      <img src="images/Standing_in_nature.jpg" class="centered" />
+      <h1>Contact Me</h1>
     </div>
-</body>
+    <div class="section-container">
+      <div class="section-block">
+        <p>
+          You can reach me via
+          <a
+            id="botproof"
+            href="#"
+            class="bot-proof-mail"
+            data-name="jrand"
+            data-domain="ryerson"
+            data-tld="ca"
+            onclick="botproofMail('botproof')"
+          ></a>
+          or shooting me a message on
+          <a href="https://www.linkedin.com/in/jared-rand-522907134/">
+            LinkedIn </a
+          >.
+        </p>
+        <p>I'm looking forward to hearing from you!</p>
+      </div>
+    </div>
+    <a
+      class="scroll-btn"
+      onclick="smoothScrollToElement('title', 750, 0, true)"
+    >
+      <span class="up-arrow"></span>
+    </a>
+  </body>
 </html>

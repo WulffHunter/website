@@ -8,6 +8,10 @@ const pages = [
   'about-site',
   'contact-me',
   'programming',
+  'gallery',
+  'creative-endeavours',
+  'collaboration',
+  'links',
 ];
 
 module.exports = {

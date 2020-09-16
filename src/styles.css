@@ -281,15 +281,12 @@ a {
 	border-radius: 1em;
 	display: block;
 	margin: 3em 1em;
-	/* padding: 1em; */
 }
 
 .section {
 	display: flex;
 	padding: 2em;
 	position: relative;
-	/* background-color: white;
-	border-radius: 1em; */
 }
 
 /* Note: `left` = (100% - `width`) / 2 */
@@ -324,6 +321,11 @@ a {
 
 .section-info {
 	padding: 1em;
+	flex-grow: 5;
+}
+
+.section-block {
+	padding: 2em;
 }
 
 @media screen and (max-width: 600px) {
@@ -363,12 +365,16 @@ a {
 	width: 110%;
 	height: 15em;
 	object-fit: cover;
-	object-position: top;
 	-o-object-fit: cover;
+	object-position: top;
 	-o-object-position: top;
 	filter: blur(6px);
 	-webkit-filter: blur(6px);
 	margin: -20px;
+}
+#title > img.centered {
+	object-position: center;
+	-o-object-position: center;
 }
 #title > h1 {
 	padding: 2em;
@@ -382,6 +388,11 @@ a {
 	height: 200px;
 	width: 200px;
 	object-fit: cover;
+	-o-object-fit: cover;
+}
+.section-title > img.bunsen-img {
+	object-fit: scale-down;
+	-o-object-fit: scale-down;
 }
 
 @media screen and (max-width: 600px) {
@@ -393,6 +404,43 @@ a {
 
 .pixelated {
 	image-rendering: pixelated;
+}
+
+.gallery {
+	padding: 2em;
+	display: block;
+	text-align: center;
+}
+.gallery > * {
+	display: block;
+	margin: 1em auto;
+}
+.gallery > img {
+	width: 30%;
+	height: auto;
+	transition: 0.5s;
+	cursor: pointer;
+}
+.gallery > img:hover {
+	width: 50%;
+}
+
+.link {
+	text-align: center;
+}
+.link > img {
+	width: 200px;
+	height: auto;
+	transition: 0.5s;
+	padding: 1em;
+	border-radius: 1em;
+}
+.link > img:hover {
+	box-shadow: 0 0 10px #333;
+}
+
+.bot-proof-mail:after {
+	content: attr(data-name) "@" attr(data-domain) "." attr(data-tld); 
 }
 
 /*
