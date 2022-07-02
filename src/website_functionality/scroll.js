@@ -52,6 +52,12 @@ export const smoothScrollToElement = (
 
     let startTime = undefined
 
+    // Since the "scroll to" function is handled by continuously
+    // requesting a new animation from the browser, we store the
+    // handle globally so that the mouse wheel can override
+    // automatic scrolling.
+    let animationHandle = undefined
+
     // The function that will actually do the scrolling for us
     const stepFn = (timestamp) => {
         // Save the starting time if it wasn't there already
@@ -59,15 +65,27 @@ export const smoothScrollToElement = (
 
         const elapsedTime = timestamp - startTime
         const percent = Math.min(elapsedTime / duration, 1)
+        const smoothSteppedPercent = smoothStep(percent, useSmoothstep)
 
         // Move
-        window.scrollTo(0, initialY + (diff * smoothStep(percent, useSmoothstep)))
+        window.scrollTo(0, initialY + (diff * smoothSteppedPercent))
 
-        if (elapsedTime < duration) {
+        if (smoothSteppedPercent < 0.99 || elapsedTime < duration) {
             // Recursively call this function to continue scrolling
-            window.requestAnimationFrame(stepFn)
+            animationHandle = window.requestAnimationFrame(stepFn)
+        } else {
+            window.removeEventListener('wheel')
         }
     }
 
-    window.requestAnimationFrame(stepFn)
+    const cancelScrollByWheel = () => {
+        if (animationHandle) {
+            window.cancelAnimationFrame(animationHandle)
+        }
+        window.removeEventListener('wheel')
+    }
+
+    window.addEventListener('wheel', cancelScrollByWheel)
+    animationHandle = window.requestAnimationFrame(stepFn)
 }
+
